@@ -33,7 +33,4 @@ public class BaseDatos {
     public BaseDatos() {
     }
 
-
-
-
 }

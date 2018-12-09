@@ -6,14 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,17 +21,13 @@ public class MainActivity extends AppCompatActivity {
     ConexionBaseDatos conexion;  // conexion con la base de datos
     SQLiteDatabase db;  // Conecta con BD  para obtener metodos para modificar tabla.
 
-
-    ListView listaMascotas; //Here declared the variable of ListView  ---> A
+    ListView listaMascotas; //Esto es donde se visualizara los datos que hay en la base de datos
     ArrayList<DatosCrearLista> listaDatosMascotas;  // seran los datos almacenados
-    ArrayAdapter adaptador;  // esto servira para llenar el listView
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //Caja de texto en donde se ingresaran los datos
         textoNombreMascota = (EditText) findViewById(R.id.editTextNombreMascota);
@@ -48,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //Esto es para poder acceder a las BD, crea una instancia de la subclase de 'SQLiteOpenHelper'
         conexion = new ConexionBaseDatos(this);
 
+        //BOTONES
         botonAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,28 +53,17 @@ public class MainActivity extends AppCompatActivity {
         botonBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                borrar();
+                borrar(); //Funcion para borrar un registro de la base de datos usando dos parametros.
             }
         });
 
         botonListar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                //Funcion para mostrar el contenido de la base de datos en una lista ListView por medio de una ArrayList
+                Listar();
             }
         });
-
-
-
-        listaMascotas = (ListView) findViewById(R.id.listaDatosPropietarioMascota);
-
-        listaDatosMascotas = new ArrayList<DatosCrearLista>();
-        listaDatosMascotas.add(new DatosCrearLista("tomas", "che", "labrador"));
-        listaDatosMascotas.add(new DatosCrearLista("jorge", "pirulo", "doberman"));
-
-        AdaptadorDatosCrearLista miAdaptador = new AdaptadorDatosCrearLista(getApplicationContext(),listaDatosMascotas);
-        listaMascotas.setAdapter(miAdaptador);
 
     }
 
@@ -99,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Se guardo el registro con clave " + newRowId, Toast.LENGTH_LONG).show();
     }
 
+    //Funcion para borrar un registro de la base de datos usando dos parametros.
     public void borrar(){
         //Esto realiza la conexion con la base de datos creada
         db = conexion.getWritableDatabase();
@@ -118,34 +103,35 @@ public class MainActivity extends AppCompatActivity {
         textoRazaMascota.setText("");
     }
 
-
+    //Funcion para mostrar el contenido de la base de datos en una lista ListView por medio de una ArrayList
     public void Listar() {
+        //Esto es el listView donde se mostraran los datos
+        listaMascotas = (ListView) findViewById(R.id.listaDatosPropietarioMascota);
+        //Esto es una ArrayList que contendra una lista de objetos con los datos de las mascotas
+        listaDatosMascotas = new ArrayList<DatosCrearLista>();
         //Esto realiza la conexion con la base de datos creada
-        db = conexion.getReadableDatabase();
-        // Especificando las columnas que debe de devolver --> A
-        String[] columnDevueltas = {
-                BaseDatos.NOMBRE_COLUMNA2,
-                BaseDatos.NOMBRE_COLUMNA3,
-                BaseDatos.NOMBRE_COLUMNA3
-        };
+        db = conexion.getWritableDatabase();
+        // busqueda de datos por medio de una sentencia SQL en la tabla
+        String busqueda = "SELECT * FROM listado_de_perros";
+        //cursor con el cual realizaremos la busqueda
+        Cursor c = db.rawQuery(busqueda, null);
 
-
+        if (c.moveToFirst()){  // con esto, se dice que nos moveremos desde el primer registro
+            do{ //Agregara a la lista los datos obtenidos
+                listaDatosMascotas.add(new DatosCrearLista(c.getString(1), c.getString(2), c.getString(3)));
+                //Esto servira para adaptar los datos de la lista para que se usen en el ListView
+                AdaptadorDatosCrearLista miAdaptador = new AdaptadorDatosCrearLista(getApplicationContext(),listaDatosMascotas);
+                listaMascotas.setAdapter(miAdaptador);  //Aqui se agrega al ListView
+            }while (c.moveToNext());  // Esto dice que mientra halla un siguiente registro el bucle continua
+        }
     }
 
 
-    /*
-    listaMascotas = (ListView) findViewById(R.id.listaDatosPropietarioMascota);
-
-        listaDatosMascotas = new ArrayList<DatosCrearLista>();
-        listaDatosMascotas.add(new DatosCrearLista("tomas", "che", "labrador"));
-        listaDatosMascotas.add(new DatosCrearLista("jorge", "pirulo", "doberman"));
-
-        AdaptadorDatosCrearLista miAdaptador = new AdaptadorDatosCrearLista(getApplicationContext(),listaDatosMascotas);
-        listaMascotas.setAdapter(miAdaptador);
-     */
-
-
-
+    public void limpiarCampos(View view){
+        textoNombreMascota.setText("");
+        textoNombrePropietario.setText("");
+        textoRazaMascota.setText("");
+    }
 
 
 

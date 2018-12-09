@@ -13,14 +13,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginEnd="94dp"
         android:layout_marginTop="16dp"
         android:text="@string/nombre"
         android:textAlignment="center"
         android:textColor="@color/negro"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNombreMascota"
-        app:layout_constraintStart_toStartOf="@+id/editTextNombreMascota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonLimpiar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,88 +41,95 @@
         android:id="@+id/textViewRaza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="107dp"
         android:text="@string/raza"
         android:textAlignment="center"
         android:textColor="@color/negro"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextRazaPerro"
-        app:layout_constraintEnd_toEndOf="@+id/editTextRazaPerro"
-        app:layout_constraintStart_toStartOf="@+id/editTextRazaPerro" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonBorrar" />
 
     <EditText
         android:id="@+id/editTextNombreMascota"
-        android:layout_width="0dp"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/nombreMascota"
+        android:inputType="text"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonAgregar"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNombrePropietario"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombrePropietario"
         app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
 
     <EditText
         android:id="@+id/editTextNombrePropietario"
-        android:layout_width="0dp"
+        android:layout_width="222dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/nombrePropietario"
+        android:inputType="text"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRaza"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonAgregar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonBorrar" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/buttonBorrar"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAgregar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextRazaPerro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/tipoRaza"
+        android:inputType="text"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/listaDatosPropietarioMascota"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonListar"
-        app:layout_constraintTop_toTopOf="@+id/buttonListar" />
+        app:layout_constraintStart_toEndOf="@+id/buttonListar" />
 
     <Button
         android:id="@+id/buttonAgregar"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginBottom="7dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="43dp"
         android:backgroundTint="@color/rojoClaro"
         android:text="@string/agregar"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNombreMascota"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBorrar"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNombrePropietario"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLimpiar" />
 
     <Button
         android:id="@+id/buttonBorrar"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="124dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
         android:backgroundTint="@color/rojoClaro"
         android:text="@string/borrar"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNombrePropietario"
+        app:layout_constraintBottom_toTopOf="@+id/buttonListar"
+        app:layout_constraintEnd_toStartOf="@+id/textViewRaza"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAgregar" />
 
@@ -129,26 +137,45 @@
         android:id="@+id/buttonListar"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
         android:backgroundTint="@color/rojoClaro"
         android:text="@string/listar"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/listaDatosPropietarioMascota"
         app:layout_constraintEnd_toStartOf="@+id/editTextRazaPerro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBorrar" />
 
+    <Button
+        android:id="@+id/buttonLimpiar"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/rojoClaro"
+        android:text="@string/limpiar"
+        android:textAllCaps="false"
+        android:onClick="limpiarCampos"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAgregar"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/listaDatosPropietarioMascota"
-        android:layout_width="368dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginStart="21dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonListar" />
+
+
 </android.support.constraint.ConstraintLayout>

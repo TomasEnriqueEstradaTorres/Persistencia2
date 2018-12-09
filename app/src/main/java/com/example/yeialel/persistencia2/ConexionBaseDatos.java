@@ -25,6 +25,7 @@ public class ConexionBaseDatos extends SQLiteOpenHelper {
         db.execSQL(BaseDatos.SQL_CREATE_ENTRIES);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL(BaseDatos.SQL_CREATE_ENTRIES);

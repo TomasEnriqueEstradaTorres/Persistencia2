@@ -12,6 +12,11 @@ import java.util.List;
 
 public class AdaptadorDatosCrearLista extends BaseAdapter{
 
+    /**Tanto el archivo "AdaptadorDatosCrearLista.class", como el "DatosCrearLista.class"
+     * ambos han sido creados para poder cargar los datos en un ListView que esta en "crear_lista.xml"
+     * que es la plantilla de diseño para colocar en "activity_main.xml"
+     * */
+
     //Este codigo es para poder cargar los datos del listView
 
     Context contexto;
@@ -55,9 +60,6 @@ public class AdaptadorDatosCrearLista extends BaseAdapter{
         nombrePropietario.setText(ListaDatosMastotas.get(posicion).getNombrePropietario().toString());
         nombreMascota.setText(ListaDatosMastotas.get(posicion).getNombreMascota().toString());
         razaMascota.setText(ListaDatosMastotas.get(posicion).getRazaMascota().toString());
-
-
-
         return vista;
     }
 }
