@@ -7,5 +7,6 @@
     <color name="negro">#000000</color>
     <color name="fondo">#CEE3F6</color>
     <color name="rojoClaro">#F5A9A9</color>
+    <color name="amarilloClaro">#F5DA81</color>
 
 </resources>
