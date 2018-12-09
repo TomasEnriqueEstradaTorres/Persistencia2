@@ -1,5 +1,9 @@
 package com.example.yeialel.persistencia2;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+
 public class BaseDatos {
 
     // AQUI SE MOSTRARA LOS PASOS PARA CREAR UNA TABLA EN LA APLICACION
@@ -28,4 +32,8 @@ public class BaseDatos {
     //CONSTRUCTOR
     public BaseDatos() {
     }
+
+
+
+
 }
