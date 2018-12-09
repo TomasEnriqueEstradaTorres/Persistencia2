@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Persistencia2</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="propietario">Propietario</string>
+    <string name="raza">Raza</string>
+    
+    <string name="agregar">Agregar</string>
+    <string name="borrar">Borrar</string>
+    <string name="listar">Listar</string>
+
+    <string name="lista">Lista de mascotas</string>
+
+    <string name="nombreMascota">Nombre de Mascota</string>
+    <string name="nombrePropietario">Nombre de Propietario</string>
+    <string name="tipoRaza">Raza del Perro</string>
+    
+    
+    
+</resources>
